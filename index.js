@@ -472,7 +472,6 @@ TextHighlighter.prototype.doHighlight = function (keepRange) {
     if (this.options.onBeforeHighlight(range) === true) {
         timestamp = +new Date();
         wrapper = TextHighlighter.createWrapper(this.options);
-        wrapper.setAttribute(TIMESTAMP_ATTR, timestamp);
 
         createdHighlights = this.highlightRange(range, wrapper);
         normalizedHighlights = this.normalizeHighlights(createdHighlights);
@@ -515,7 +514,6 @@ TextHighlighter.prototype.highlightRange = function (range, wrapper) {
 
             if (IGNORE_TAGS.indexOf(node.parentNode.tagName) === -1 && node.nodeValue.trim() !== '') {
                 wrapperClone = wrapper.cloneNode(true);
-                wrapperClone.setAttribute(DATA_ATTR, true);
                 nodeParent = node.parentNode;
 
                 // highlight if a node is inside the el
