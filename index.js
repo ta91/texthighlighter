@@ -740,16 +740,19 @@ TextHighlighter.prototype.removeHighlights = function (element) {
  * @memberof TextHighlighter
  */
 TextHighlighter.prototype.getHighlights = function (params) {
+    console.log(params);
     params = defaults(params, {
         container: this.el,
+        className: this.options.highlightedClass,
         andSelf: true,
         grouped: false
     });
 
-    var nodeList = params.container.querySelectorAll('[' + DATA_ATTR + ']'),
+    
+    var nodeList = params.container.getElementsByClassName(params.className),
         highlights = Array.prototype.slice.call(nodeList);
 
-    if (params.andSelf === true && params.container.hasAttribute(DATA_ATTR)) {
+    if (params.andSelf === true && params.container.hasClass(params.className)) {
         highlights.push(params.container);
     }
 
@@ -777,6 +780,7 @@ TextHighlighter.prototype.isHighlight = function (el) {
  * @memberof TextHighlighter
  */
 TextHighlighter.prototype.serializeHighlights = function () {
+    console.log(this);
     var highlights = this.getHighlights(),
         refEl = this.el,
         hlDescriptors = [];
