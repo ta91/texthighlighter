@@ -752,14 +752,15 @@ TextHighlighter.prototype.getHighlights = function (params) {
     var nodeList = params.container.getElementsByClassName(params.className),
         highlights = Array.prototype.slice.call(nodeList);
 
-    if (params.andSelf === true && params.container.hasClass(params.className)) {
+    if (params.andSelf === true && params.container.className.indexOf(params.className) > 0) {
         highlights.push(params.container);
     }
 
     if (params.grouped) {
         highlights = groupHighlights(highlights);
     }
-
+    console.log(highlights);
+    
     return highlights;
 };
 
